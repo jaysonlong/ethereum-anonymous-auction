@@ -57,6 +57,7 @@ func RingSig(msg []byte, priv *ecdsa.PrivateKey, pubs []*ecdsa.PublicKey) *Signa
 		X, RiX, RiY, tempX, tempY *big.Int
 	)
 
+	
 	for i, pub := range pubs {
 		if i == 0 {
 			X = k.PublicKey.X
@@ -109,12 +110,6 @@ func printSignature(msg []byte, sig *Signature) {
 		pubsArr[i] = &[2]string{pub.X.String(), pub.Y.String()}
 		rArr[i] = fmt.Sprint(sig.r[i])
 	}
-
-	// msgInt := make([]uint, len(msg))
-	// for i, b := range msg {
-	// 	msgInt[i] = uint(b)
-	// }
-	// msgData, _ := json.Marshal(msgInt)
 
 	pubsArrData, _ := json.Marshal(pubsArr)
 	rData, _ := json.Marshal(rArr)
